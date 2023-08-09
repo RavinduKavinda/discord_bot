@@ -24,3 +24,7 @@ ytdl_format_options = {
     'default_search': 'auto',
     'source_address': '0.0.0.0'
 }
+
+ffmpeg_options = {
+    'options': '-vn'
+}
