@@ -70,22 +70,30 @@ class YTDLSource(discord.PCMVolumeTransformer):
     async def pause(ctx):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_playing():
-              await voice_client.pause()
+            await voice_client.pause()
         else:
-             await ctx.send("The bot has pauses the music")
+            await ctx.send("The bot has pauses the music")
 
     @bot.command(name = 'resume')
     async def resume(ctx):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_paused():
-              await voice_client.resume()
+            await voice_client.resume()
         else:
-             await ctx.send("The bot is not playing music")
+            await ctx.send("The bot is not playing music")
 
     @bot.command(name = 'leave')
     async def leave(ctx):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_connected():
-              await voice_client.disconnected()
+            await voice_client.disconnected()
         else:
-             await ctx.send("The bot has not join a voice channel")
+            await ctx.send("The bot has not join a voice channel")
+
+    @bot.command(name = 'stop')
+    async def stop(ctx):
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_playing():
+            await voice_client.stop()
+        else:
+            await ctx.send("The bot is not playing")
