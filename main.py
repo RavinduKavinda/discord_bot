@@ -12,6 +12,8 @@ intents = discord.Intents().all
 client = discord.Client(intents = intents)
 bot = commands.Bot(command_prefix='/', intents=intents)
 
+youtube_dl.utils.bug_reports_message = lambda: ''
+
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'restrictfilenames': True,
@@ -97,3 +99,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
             await voice_client.stop()
         else:
             await ctx.send("The bot is not playing")
+
+if __name__ == "__main__":
+        bot.run("MTEzODc4NzQ1NTYwNTE0OTc5Nw.G91xbU.wFYACaBVPf1IH8ps0DpebFweZRemmnfhlrroGg")
