@@ -48,4 +48,13 @@ class YTDLSource(discord.PCMVolumeTransformer):
                return filename
           
 
-    
+    @bot.command(name = 'join')
+    async def join(ctx):
+        if not ctx.message.author.voice:
+              await ctx.send("Please {} connected to a voice channel".format(ctx.massage.author.name))
+              return
+        else:
+            channel = ctx.message.author.voice.channel
+            await channel.connect()
+
+            
