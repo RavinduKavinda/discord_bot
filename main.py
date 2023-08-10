@@ -66,4 +66,12 @@ class YTDLSource(discord.PCMVolumeTransformer):
              voice_channel.play(discord.FFmpegPCMAudio(executable = "", source = filename))
         await ctx.send('**Now Playing:** {}'.format(filename))
 
-    
+    @bot.command(name = 'pause')
+    async def pause(ctx):
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_playing():
+              await voice_client.pause()
+        else:
+             await ctx.send("The bot has pauses the music")
+
+             
