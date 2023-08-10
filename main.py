@@ -57,4 +57,13 @@ class YTDLSource(discord.PCMVolumeTransformer):
             channel = ctx.message.author.voice.channel
             await channel.connect()
 
-            
+    @bot.command(name = 'play')
+    async def play(ctx, url):
+        server = ctx.message.guild
+        voice_channel = server.voice_client
+        async with ctx.typing():
+             filename = await YTDLSource.from_url(url, loop = bot.loop)
+             voice_channel.play(discord.FFmpegPCMAudio(executable = "", source = filename))
+        await ctx.send('**Now Playing:** {}'.format(filename))
+
+    
