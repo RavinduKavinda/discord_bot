@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import youtube_dl
 
 load_dotenv()
-DISCORD_TOKEN = os.getenv("MTEzODc4NzQ1NTYwNTE0OTc5Nw.Gd_uR2.6T6IAjpD_VovI4-D4QQZHeHY7G7mcVyukzetzQ")
+DISCORD_TOKEN = os.getenv("MTEzODc4NzQ1NTYwNTE0OTc5Nw.G91xbU.wFYACaBVPf1IH8ps0DpebFweZRemmnfhlrroGg")
 
 intents = discord.Intents().all
 client = discord.Client(intents = intents)
@@ -51,7 +51,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
           
 
     @bot.command(name = 'join')
-    async def join(ctx):
+    async def join(ctx, url):
         if not ctx.message.author.voice:
               await ctx.send("Please {} connected to a voice channel".format(ctx.massage.author.name))
               return
@@ -69,7 +69,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         await ctx.send('**Now Playing:** {}'.format(filename))
 
     @bot.command(name = 'pause')
-    async def pause(ctx):
+    async def pause(ctx, url):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_playing():
             await voice_client.pause()
@@ -77,7 +77,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             await ctx.send("The bot has pauses the music")
 
     @bot.command(name = 'resume')
-    async def resume(ctx):
+    async def resume(ctx, url):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_paused():
             await voice_client.resume()
@@ -85,7 +85,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             await ctx.send("The bot is not playing music")
 
     @bot.command(name = 'leave')
-    async def leave(ctx):
+    async def leave(ctx, url):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_connected():
             await voice_client.disconnected()
@@ -93,7 +93,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             await ctx.send("The bot has not join a voice channel")
 
     @bot.command(name = 'stop')
-    async def stop(ctx):
+    async def stop(ctx, url):
         voice_client = ctx.message.guild.voice_client
         if voice_client.is_playing():
             await voice_client.stop()
