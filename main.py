@@ -74,4 +74,11 @@ class YTDLSource(discord.PCMVolumeTransformer):
         else:
              await ctx.send("The bot has pauses the music")
 
-             
+    @bot.command(name = 'resume')
+    async def resume(ctx):
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_paused():
+              await voice_client.resume()
+        else:
+             await ctx.send("The bot is not playing music")
+
