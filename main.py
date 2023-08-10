@@ -82,3 +82,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
         else:
              await ctx.send("The bot is not playing music")
 
+    @bot.command(name = 'leave')
+    async def leave(ctx):
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_connected():
+              await voice_client.disconnected()
+        else:
+             await ctx.send("The bot has not join a voice channel")
